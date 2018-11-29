@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+ 	"http:/ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 	<mapper namespace="com.myspringwebmvcbatis.demo.dao.ITestDao">
+	
+	<select id="selectUsers" parameterType="com.myspringwebmvcbatis.demo.bean.User" resultType="com.myspringwebmvcbatis.demo.bean.User">
+		select * from user_table where email =#{email} and password=#{password}
+	</select>
+	<select id="isHaveUser" resultType="int" parameterType="String">
+		select count(*) as count from user_table where email =#{email}
+	</select>
+	<insert id="insertUser" parameterType="Map">
+		insert into user_table (email,password) values(#{email},#{password})
+	</insert>
+	<insert id="insertweb" parameterType="Map">
+		insert into user_table (nickname,sex,job,city,birthday,homepage,self_introduce,wechat,sina,qq) 
+		values(#{nickname},#{sex},#{job},${city},${birthday},${homepage},${self_introduce},${wechat},${sina},${qq})
+	</insert>
+</mapper>
